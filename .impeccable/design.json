@@ -1,0 +1,31 @@
+{
+  "name": "Harsh Koshiya (HKARTWORKS)",
+  "northStar": "The Tactile Atelier",
+  "tokens": {
+    "colors": {
+      "primary": "#2D4837",
+      "primary-container": "#CEF8DF",
+      "secondary": "#60A372",
+      "secondary-container": "#86EFAC",
+      "tertiary": "#CE97EC",
+      "tertiary-container": "#F5E8FC",
+      "background": "#EEF6F1",
+      "surface": "#EEF6F1",
+      "surface-lowest": "#FFFFFF",
+      "on-surface": "#212121",
+      "on-surface-variant": "#2D4837",
+      "outline": "#212121"
+    },
+    "shadows": {
+      "subtle": "2px 2px 0px 0px rgba(0,0,0,1)",
+      "standard": "4px 4px 0px 0px rgba(0,0,0,1)",
+      "card": "5px 5px 0px 0px rgba(0,0,0,1)",
+      "lifted": "8px 8px 0px 0px rgba(0,0,0,1)"
+    },
+    "transitions": {
+      "default": "0.2s cubic-bezier(0.16, 1, 0.3, 1)",
+      "smooth": "0.3s cubic-bezier(0.16, 1, 0.3, 1)",
+      "glitch": "0.15s cubic-bezier(0.16, 1, 0.3, 1)"
+    }
+  }
+}

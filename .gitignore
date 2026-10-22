@@ -1,0 +1,37 @@
+# Built application files
+*.apk
+*.aar
+*.aab
+
+# Android Studio / Gradle
+.gradle/
+build/
+app/build/
+**/build/
+captures/
+.externalNativeBuild
+.cxx/
+local.properties
+
+# IDE & Editor files
+.idea/
+*.iml
+.vscode/
+
+# Environment & Credentials
+.env
+.env.*
+*.jks
+*.keystore
+credentials.json
+token.json
+
+# Temporary & Cache
+.tmp/
+*.log
+__pycache__/
+*.py[cod]
+
+# OS generated files
+Thumbs.db
+.DS_Store
