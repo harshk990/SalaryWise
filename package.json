@@ -1,0 +1,14 @@
+{
+  "name": "salarywise",
+  "version": "1.0.0",
+  "private": true,
+  "description": "SalaryWise - Personal Finance & Budget Planner",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js",
+    "serve": "node server.js"
+  },
+  "keywords": ["finance", "budget", "salarywise", "offline"],
+  "author": "SalaryWise",
+  "license": "ISC"
+}
