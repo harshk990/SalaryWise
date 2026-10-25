@@ -1166,7 +1166,7 @@ svg { display: block; flex-shrink: 0; }
         <svg><use href="#i-wallet"></use></svg>Bank Balance
       </button>
       <button class="navbtn" data-page="advisor">
-        <svg><use href="#i-spark"></use></svg>Affordability
+        <svg><use href="#i-spark"></use></svg>Kharcha Test
       </button>
       <button class="navbtn" data-page="house">
         <svg><use href="#i-target"></use></svg>Goals
@@ -1195,7 +1195,7 @@ svg { display: block; flex-shrink: 0; }
         <div class="brandmark" style="width:28px;height:28px"><svg style="width:15px;height:15px"><use href="#i-spark"></use></svg></div>
         SalaryWise
       </div>
-      <button class="btn tiny" id="mobileQuickBuyBtn"><svg><use href="#i-spark"></use></svg>Simulate</button>
+      <button class="btn tiny" id="mobileQuickBuyBtn"><svg><use href="#i-spark"></use></svg>Kharcha Test</button>
     </div>
 
     <!-- Topbar -->
@@ -1271,8 +1271,8 @@ svg { display: block; flex-shrink: 0; }
                 <svg style="width:20px;height:20px"><use href="#i-spark"></use></svg>
               </span>
               <div>
-                <strong style="display:block;font-size:13.5px">Can I Afford It?</strong>
-                <span style="font-size:11.5px;color:#64748b">Simulate any purchase against safe reserve</span>
+                <strong style="display:block;font-size:13.5px">Le Sakta Hu Ya Nahi?</strong>
+                <span style="font-size:11.5px;color:#64748b">Kapde, food, shopping ka budget test</span>
               </div>
             </div>
             <span class="btn secondary tiny" style="font-size:11.5px">Test &rarr;</span>
@@ -1293,60 +1293,64 @@ svg { display: block; flex-shrink: 0; }
       </div>
     </section>
 
-    <!-- TAB 2: DEDICATED AFFORDABILITY ADVISOR -->
+    <!-- TAB 2: KHARCHA TEST (LE SAKTA HU YA NAHI) -->
     <section class="view" id="view-advisor">
       <div class="stack">
-        <!-- Safe Cash Quick Status Pill -->
+        <!-- Top Status Pill (Hinglish, Minimal) -->
         <div class="card" style="padding:12px 18px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;background:#ecfdf5;border:1px solid #a7f3d0">
           <div style="display:flex;align-items:center;gap:10px">
             <span style="display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;background:#059669;color:#ffffff;border-radius:50%">
               <svg style="width:18px;height:18px"><use href="#i-check"></use></svg>
             </span>
             <div>
-              <span style="font-size:11px;font-weight:700;color:#047857;text-transform:uppercase">Safe to Spend Today</span>
+              <span style="font-size:11px;font-weight:700;color:#047857;text-transform:uppercase">Aaj Ka Safe Balance</span>
               <div style="font-size:19px;font-weight:800;color:#065f46" id="advisorSafeBadge">₹2,86,738</div>
             </div>
           </div>
-          <div style="display:flex;align-items:center;gap:8px">
-            <span style="font-size:11.5px;color:#047857;font-weight:600">Fixed Dues &amp; House Buffer Protected</span>
-            <button class="btn secondary tiny" onclick="nav('balance')" style="background:#ffffff;border-color:#a7f3d0;color:#065f46;padding:4px 10px;font-size:11px">Manage Balance</button>
-          </div>
+          <span style="font-size:12px;color:#047857;font-weight:600">Fixed dues &amp; buffer safe hain</span>
         </div>
 
-        <!-- The Interactive Affordability Card -->
-        <div class="advisor-card">
-          <div class="advisor-inputs-row">
-            <div class="advisor-input-item">
-              <input id="itemName" placeholder="What do you want to buy?" value="Workspace Monitor">
+        <!-- Wishlist & Kharcha Test Card -->
+        <div class="card" style="padding:20px">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+            <div>
+              <h2 style="margin:0 0 2px;font-size:18px;font-weight:800">Le Sakta Hu Ya Nahi?</h2>
+              <span style="font-size:12px;color:#64748b">Jo cheezein pasand aayi hain, yahan add karo</span>
             </div>
-            <div class="advisor-input-item" style="max-width:180px">
-              <input id="itemCost" type="number" min="0" step="any" placeholder="Price (₹)" value="25000">
-            </div>
-            <button class="btn" id="calculateAffordBtn" style="min-height:42px">
-              <svg><use href="#i-spark"></use></svg>Simulate
+            <button class="btn secondary tiny" id="clearWishlistBtn" style="font-size:11.5px;padding:4px 10px">Clear List</button>
+          </div>
+
+          <!-- Quick Add Input Form -->
+          <form id="addWishItemForm" style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap">
+            <input id="wishItemName" placeholder="Item name (e.g. T-shirt, Tiramisu)" style="flex:2;min-width:160px;height:40px;padding:6px 12px;border:1px solid #cbd5e1;border-radius:8px;font-size:14px;font-weight:600" required>
+            <input id="wishItemCost" type="number" min="1" step="any" placeholder="Price (₹)" style="flex:1;min-width:100px;max-width:140px;height:40px;padding:6px 12px;border:1px solid #cbd5e1;border-radius:8px;font-size:15px;font-weight:800" required>
+            <button type="submit" class="btn" style="height:40px;padding:0 18px;font-size:13px">
+              <svg style="width:14px;height:14px"><use href="#i-plus"></use></svg>Add
             </button>
+          </form>
+
+          <!-- Quick Suggestions Pills -->
+          <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px">
+            <button type="button" class="pill" data-quick-item="T-shirt" data-quick-price="1500">+ T-shirt (₹1.5k)</button>
+            <button type="button" class="pill" data-quick-item="Tiramisu" data-quick-price="250">+ Tiramisu (₹250)</button>
+            <button type="button" class="pill" data-quick-item="Bookshelf" data-quick-price="2000">+ Bookshelf (₹2k)</button>
+            <button type="button" class="pill" data-quick-item="Shoes" data-quick-price="3500">+ Shoes (₹3.5k)</button>
           </div>
 
-          <!-- Quick Test Chips -->
-          <div class="quick-pills">
-            <button class="pill" data-amount="3500">₹3.5k (Shoes)</button>
-            <button class="pill" data-amount="15000">₹15k (Gadget)</button>
-            <button class="pill" data-amount="45000">₹45k (Phone)</button>
-            <button class="pill" data-amount="120000">₹1.2L (Laptop)</button>
-            <button class="pill" data-amount="250000">₹2.5L (Major)</button>
+          <!-- Items Checklist Container -->
+          <div id="wishlistItemsContainer" style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px">
+            <!-- Dynamic item rows rendered here -->
           </div>
 
-          <!-- Dynamic Visual Verdict -->
-          <div id="verdictOutput" class="verdict-box safe" aria-live="polite">
+          <!-- Smart Verdict Box (Hinglish & Minimalist) -->
+          <div id="verdictOutput" class="verdict-box safe" style="margin-top:10px" aria-live="polite">
             <!-- Injected via JS -->
           </div>
 
-          <!-- Mini Timeline Strategy (Shown on Wait) -->
-          <div id="timelineOutput"></div>
-
-          <div style="display:flex;justify-content:flex-end;margin-top:14px" id="purchaseActionRow">
-            <button class="btn success" id="recordPurchaseBtn">
-              <svg><use href="#i-check"></use></svg>I Bought This · Log &amp; Deduct
+          <!-- Action Button Row -->
+          <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:14px" id="purchaseActionRow">
+            <button class="btn success" id="recordPurchaseBtn" style="font-weight:800">
+              <svg><use href="#i-check"></use></svg>Kharid Liya (Deduct from Balance)
             </button>
           </div>
         </div>
@@ -1595,7 +1599,7 @@ svg { display: block; flex-shrink: 0; }
   </button>
   <button data-page="advisor">
     <svg style="width:20px;height:20px"><use href="#i-spark"></use></svg>
-    <span>Afford</span>
+    <span>Kharcha</span>
   </button>
   <button data-page="house">
     <svg style="width:20px;height:20px"><use href="#i-target"></use></svg>
@@ -1886,6 +1890,11 @@ svg { display: block; flex-shrink: 0; }
         color: '#7c3aed'
       }
     ],
+    wishlist: [
+      { id: 'w1', name: 'T-shirt', cost: 1500, checked: true },
+      { id: 'w2', name: 'Tiramisu', cost: 250, checked: true },
+      { id: 'w3', name: 'Bookshelf Room Upgrade', cost: 2000, checked: true }
+    ],
     statementData: null,
     statementCleared: false
   });
@@ -1917,6 +1926,9 @@ svg { display: block; flex-shrink: 0; }
             color: '#059669'
           });
         }
+      }
+      if (!Array.isArray(state.wishlist)) {
+        state.wishlist = defaultState().wishlist;
       }
       if (parsed.statementData !== undefined) {
         state.statementData = parsed.statementData;
@@ -1989,7 +2001,7 @@ svg { display: block; flex-shrink: 0; }
     const titles = {
       balance: 'Bank Balance & Capital',
       dashboard: 'Bank Balance & Capital',
-      advisor: 'Can I Afford It?',
+      advisor: 'Le Sakta Hu Ya Nahi? (Kharcha Test)',
       house: 'Goals',
       expenses: 'Monthly Fixed Dues',
       history: 'Payment Ledger',
@@ -2009,42 +2021,107 @@ svg { display: block; flex-shrink: 0; }
     }
   });
 
-  // VISUAL AFFORDABILITY ENGINE
-  function evaluatePurchase() {
-    const name = $('itemName').value.trim() || 'This item';
-    const cost = Math.max(0, Number($('itemCost').value) || 0);
+  // WISHLIST & KHARCHA TEST (LE SAKTA HU YA NAHI)
+  function renderWishlist() {
+    const container = $('wishlistItemsContainer');
+    if (!container) return;
 
-    const totalFixed = getTotalFixed();
-    const currentBal = state.bankBalance;
-    const remainingBal = currentBal - cost;
-    const monthlySurplus = getMonthlySurplus();
-
-    const safeBuffer = totalFixed * 2;
-    const safeDiscretionary = Math.max(0, currentBal - safeBuffer);
-
-    const verdictEl = $('verdictOutput');
-    const timelineEl = $('timelineOutput');
-    const actionRow = $('purchaseActionRow');
-
-    if (cost <= 0) {
-      verdictEl.className = 'verdict-box caution';
-      verdictEl.innerHTML = `
-        <span class="status-pill"><svg><use href="#i-alert"></use></svg> Enter Price</span>
-        <div style="font-size:13px;font-weight:600;color:#78350f">Type an item amount above to see instant visual safety gauge.</div>
+    if (!Array.isArray(state.wishlist) || state.wishlist.length === 0) {
+      container.innerHTML = `
+        <div style="text-align:center;padding:18px 12px;border:1.5px dashed #cbd5e1;border-radius:10px;color:#64748b;font-size:13px">
+          Koi item added nahi hai. Upar se item add karo ya sample chips tap karo!
+        </div>
       `;
-      timelineEl.innerHTML = '';
-      actionRow.style.display = 'none';
       return;
     }
 
-    actionRow.style.display = 'flex';
-    $('recordPurchaseBtn').innerHTML = `<svg><use href="#i-check"></use></svg> I Bought "${name}" (${fmt(cost)})`;
+    container.innerHTML = state.wishlist.map(item => {
+      const isChecked = item.checked !== false;
+      const textStyle = isChecked ? 'font-weight:600;color:#0f172a' : 'text-decoration:line-through;color:#94a3b8';
+      const costStyle = isChecked ? 'font-weight:800;color:#0f172a' : 'text-decoration:line-through;color:#94a3b8';
+      return `
+        <div class="wishlist-row" style="display:flex;align-items:center;justify-content:space-between;gap:10px;padding:9px 12px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px">
+          <label style="display:flex;align-items:center;gap:10px;cursor:pointer;flex:1;min-width:0;user-select:none">
+            <input type="checkbox" data-wish-toggle="${item.id}" ${isChecked ? 'checked' : ''} style="width:18px;height:18px;accent-color:#059669;cursor:pointer">
+            <span style="font-size:13.5px;${textStyle};overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${escapeHtml(item.name)}</span>
+          </label>
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="font-size:14.5px;${costStyle};font-variant-numeric:tabular-nums">${fmt(item.cost)}</span>
+            <button type="button" class="iconbtn" data-wish-remove="${item.id}" title="Remove" style="width:26px;height:26px;color:#94a3b8;display:inline-flex;align-items:center;justify-content:center;background:none;border:none;cursor:pointer;border-radius:6px">
+              <svg style="width:13px;height:13px"><use href="#i-x"></use></svg>
+            </button>
+          </div>
+        </div>
+      `;
+    }).join('');
 
-    // Gauge needle position: 0% at ₹0, 35% at 1-month dues, 70% at 2-month dues, 100% at ₹4L+
-    const maxScale = Math.max(currentBal, safeBuffer * 1.5, 400000);
-    const needlePct = Math.min(100, Math.max(4, (remainingBal / maxScale) * 100)).toFixed(1);
+    // Toggle item checked
+    container.querySelectorAll('[data-wish-toggle]').forEach(chk => {
+      chk.addEventListener('change', (e) => {
+        const id = e.target.dataset.wishToggle;
+        const item = state.wishlist.find(w => w.id === id);
+        if (item) {
+          item.checked = e.target.checked;
+          saveState();
+          renderWishlist();
+          evaluatePurchase();
+        }
+      });
+    });
 
-    const monthsCovered = totalFixed > 0 ? (remainingBal / totalFixed).toFixed(1) : '∞';
+    // Remove item
+    container.querySelectorAll('[data-wish-remove]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.dataset.wishRemove;
+        const removed = state.wishlist.find(w => w.id === id);
+        if (!removed) return;
+        state.wishlist = state.wishlist.filter(w => w.id !== id);
+        saveState();
+        renderWishlist();
+        evaluatePurchase();
+        showToast(`Removed "${removed.name}"`, () => {
+          state.wishlist.push(removed);
+          saveState();
+          renderWishlist();
+          evaluatePurchase();
+          showToast(`Restored "${removed.name}"`);
+        });
+      });
+    });
+  }
+
+  function evaluatePurchase() {
+    const verdictEl = $('verdictOutput');
+    const actionRow = $('purchaseActionRow');
+    if (!verdictEl) return;
+
+    const wishlist = Array.isArray(state.wishlist) ? state.wishlist : [];
+    const checkedItems = wishlist.filter(item => item.checked !== false);
+    const totalCost = checkedItems.reduce((sum, item) => sum + (Number(item.cost) || 0), 0);
+    const count = checkedItems.length;
+
+    const totalFixed = getTotalFixed();
+    const currentBal = state.bankBalance;
+    const remainingBal = currentBal - totalCost;
+    const safeBuffer = totalFixed * 2;
+
+    if (totalCost <= 0) {
+      verdictEl.className = 'verdict-box';
+      verdictEl.style.background = '#f8fafc';
+      verdictEl.style.borderColor = '#e2e8f0';
+      verdictEl.innerHTML = `
+        <div style="text-align:center;padding:12px;font-size:13px;font-weight:600;color:#64748b">
+          👆 Kisi item ko tick karo ya naya item add karo budget test dekhne ke liye.
+        </div>
+      `;
+      if (actionRow) actionRow.style.display = 'none';
+      return;
+    }
+
+    if (actionRow) {
+      actionRow.style.display = 'flex';
+      $('recordPurchaseBtn').innerHTML = `<svg style="width:16px;height:16px"><use href="#i-check"></use></svg> Kharid Liya (Deduct ${fmt(totalCost)})`;
+    }
 
     // Reset animation
     verdictEl.style.animation = 'none';
@@ -2053,126 +2130,79 @@ svg { display: block; flex-shrink: 0; }
 
     if (remainingBal >= safeBuffer) {
       verdictEl.className = 'verdict-box safe';
+      verdictEl.style.background = '';
+      verdictEl.style.borderColor = '';
       verdictEl.innerHTML = `
         <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
-          <span class="status-pill"><svg><use href="#i-check"></use></svg> Safe to Buy Today</span>
-          <span style="font-size:12.5px;font-weight:700;color:#065f46">Zero Risk to House &amp; Dues</span>
+          <span class="status-pill"><svg><use href="#i-check"></use></svg> Haan, befikar le sakte ho!</span>
+          <span style="font-size:12px;font-weight:700;color:#065f46">Monthly dues &amp; buffer safe hain</span>
         </div>
 
-        <!-- 3-Zone Safety Gauge -->
-        <div class="gauge-wrap">
-          <div class="gauge-track">
-            <div class="gauge-pointer" style="left:${needlePct}%" title="Remaining: ${fmt(remainingBal)}"></div>
-          </div>
-          <div class="gauge-labels">
-            <span>Danger (&lt;1 Mo)</span>
-            <span>Buffer (1-2 Mo)</span>
-            <span style="color:#059669">Safe Zone (&gt;2 Mo)</span>
-          </div>
-        </div>
-
-        <!-- 3 Big Metric Tiles -->
         <div class="verdict-tiles">
           <div class="vtile">
-            <span class="vtile-label">Balance After</span>
-            <div class="vtile-val">${fmt(remainingBal)}</div>
+            <span class="vtile-label">Total Kharcha (${count} item${count > 1 ? 's' : ''})</span>
+            <div class="vtile-val">${fmt(totalCost)}</div>
           </div>
           <div class="vtile">
-            <span class="vtile-label">Dues Covered</span>
-            <div class="vtile-val" style="color:#059669">${monthsCovered} Months</div>
+            <span class="vtile-label">Baad Me Balance</span>
+            <div class="vtile-val" style="color:#059669">${fmt(remainingBal)}</div>
           </div>
           <div class="vtile">
-            <span class="vtile-label">House Impact</span>
-            <div class="vtile-val" style="color:#059669">0 Delay</div>
+            <span class="vtile-label">Next Month Dues</span>
+            <div class="vtile-val" style="font-size:14px;color:#059669">Salary se cover (Safe)</div>
           </div>
         </div>
       `;
-      timelineEl.innerHTML = '';
     } else if (remainingBal >= totalFixed) {
+      const neededForSafe = safeBuffer - remainingBal;
       verdictEl.className = 'verdict-box caution';
+      verdictEl.style.background = '';
+      verdictEl.style.borderColor = '';
       verdictEl.innerHTML = `
         <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
-          <span class="status-pill"><svg><use href="#i-alert"></use></svg> Think Twice · Buffer Dips</span>
-          <span style="font-size:12.5px;font-weight:700;color:#92400e">Dips below 2-month reserve</span>
-        </div>
-
-        <div class="gauge-wrap">
-          <div class="gauge-track">
-            <div class="gauge-pointer" style="left:${needlePct}%"></div>
-          </div>
-          <div class="gauge-labels">
-            <span>Danger (&lt;1 Mo)</span>
-            <span style="color:#d97706">Buffer (1-2 Mo)</span>
-            <span>Safe Zone (&gt;2 Mo)</span>
-          </div>
+          <span class="status-pill"><svg><use href="#i-alert"></use></svg> Soch kar lo (Buffer kam hoga)</span>
+          <span style="font-size:12px;font-weight:700;color:#92400e">2-month emergency reserve kam hoga</span>
         </div>
 
         <div class="verdict-tiles">
           <div class="vtile">
-            <span class="vtile-label">Balance After</span>
-            <div class="vtile-val">${fmt(remainingBal)}</div>
+            <span class="vtile-label">Total Kharcha (${count} item${count > 1 ? 's' : ''})</span>
+            <div class="vtile-val">${fmt(totalCost)}</div>
           </div>
           <div class="vtile">
-            <span class="vtile-label">Dues Covered</span>
-            <div class="vtile-val" style="color:#d97706">${monthsCovered} Month</div>
+            <span class="vtile-label">Safe Rehne Ko Chahiye</span>
+            <div class="vtile-val" style="color:#d97706">${fmt(neededForSafe)} aur</div>
           </div>
           <div class="vtile">
-            <span class="vtile-label">Recommendation</span>
-            <div class="vtile-val" style="font-size:15px;color:#92400e">Buy only if essential</div>
+            <span class="vtile-label">Next Month Dues</span>
+            <div class="vtile-val" style="font-size:14px;color:#d97706">Salary se cover hoga</div>
           </div>
-        </div>
-      `;
-
-      const waitMo = monthlySurplus > 0 ? Math.ceil(cost / Math.max(monthlySurplus, 5000)) : 2;
-      timelineEl.innerHTML = `
-        <div class="visual-timeline-strip">
-          <div class="vstep"><span class="vstep-dot">⏳</span> Wait: ${waitMo} Mo</div>
-          <div class="vstep"><span class="vstep-dot">💰</span> Save from Surplus</div>
-          <div class="vstep"><span class="vstep-dot">✓</span> 100% Tension-Free</div>
         </div>
       `;
     } else {
+      const neededForDues = totalFixed - remainingBal;
       verdictEl.className = 'verdict-box danger';
+      verdictEl.style.background = '';
+      verdictEl.style.borderColor = '';
       verdictEl.innerHTML = `
         <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
-          <span class="status-pill"><svg><use href="#i-x"></use></svg> Stop · Threatens Dues</span>
-          <span style="font-size:12.5px;font-weight:700;color:#991b1b">Falls below 1-month dues</span>
-        </div>
-
-        <div class="gauge-wrap">
-          <div class="gauge-track">
-            <div class="gauge-pointer" style="left:${needlePct}%"></div>
-          </div>
-          <div class="gauge-labels">
-            <span style="color:#dc2626">Danger (&lt;1 Mo)</span>
-            <span>Buffer (1-2 Mo)</span>
-            <span>Safe Zone (&gt;2 Mo)</span>
-          </div>
+          <span class="status-pill"><svg><use href="#i-x"></use></svg> Abhi mat lo (Budget hilega)</span>
+          <span style="font-size:12px;font-weight:700;color:#991b1b">Fixed dues par asar pad sakta hai</span>
         </div>
 
         <div class="verdict-tiles">
           <div class="vtile">
-            <span class="vtile-label">Balance After</span>
-            <div class="vtile-val" style="color:#dc2626">${fmt(remainingBal)}</div>
+            <span class="vtile-label">Total Kharcha (${count} item${count > 1 ? 's' : ''})</span>
+            <div class="vtile-val">${fmt(totalCost)}</div>
           </div>
           <div class="vtile">
-            <span class="vtile-label">Shortfall</span>
-            <div class="vtile-val" style="color:#dc2626">−${fmt(totalFixed - remainingBal)}</div>
+            <span class="vtile-label">Kitne Paise Chahiye</span>
+            <div class="vtile-val" style="color:#dc2626">${fmt(neededForDues)} aur</div>
           </div>
           <div class="vtile">
-            <span class="vtile-label">House Risk</span>
-            <div class="vtile-val" style="color:#dc2626">Critical</div>
+            <span class="vtile-label">Advice</span>
+            <div class="vtile-val" style="font-size:14px;color:#dc2626">Surplus aane par lo</div>
           </div>
-        </div>
-      `;
-
-      const extra = cost - safeDiscretionary;
-      const moNeed = Math.ceil(extra / 10000);
-      timelineEl.innerHTML = `
-        <div class="visual-timeline-strip">
-          <div class="vstep"><span class="vstep-dot" style="background:#fee2e2;color:#dc2626">✕</span> Not Today</div>
-          <div class="vstep"><span class="vstep-dot">💰</span> Save ₹10k / Mo</div>
-          <div class="vstep"><span class="vstep-dot">📅</span> Target: ${moNeed} Months</div>
         </div>
       `;
     }
@@ -2236,6 +2266,7 @@ svg { display: block; flex-shrink: 0; }
     renderGoals();
     renderHistory();
     renderStatement();
+    renderWishlist();
     evaluatePurchase();
   }
 
@@ -2441,42 +2472,93 @@ svg { display: block; flex-shrink: 0; }
     });
   }
 
-  // Inputs
-  $('itemName')?.addEventListener('input', evaluatePurchase);
-  $('itemCost')?.addEventListener('input', evaluatePurchase);
-  $('calculateAffordBtn')?.addEventListener('click', evaluatePurchase);
+  // Wishlist & Kharcha Test Handlers
+  $('addWishItemForm')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const nameInput = $('wishItemName');
+    const costInput = $('wishItemCost');
+    const name = nameInput.value.trim();
+    const cost = Math.max(0, Number(costInput.value) || 0);
+    if (!name || cost <= 0) return;
 
-  document.querySelectorAll('.pill').forEach(p => {
-    p.addEventListener('click', () => {
-      $('itemCost').value = p.dataset.amount;
+    if (!Array.isArray(state.wishlist)) state.wishlist = [];
+    state.wishlist.push({
+      id: 'w-' + Date.now().toString(36) + Math.random().toString(36).substr(2, 4),
+      name,
+      cost,
+      checked: true
+    });
+    saveState();
+    nameInput.value = '';
+    costInput.value = '';
+    renderWishlist();
+    evaluatePurchase();
+    showToast(`Added ${name} (${fmt(cost)})`);
+  });
+
+  document.querySelectorAll('[data-quick-item]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const name = btn.dataset.quickItem;
+      const price = Number(btn.dataset.quickPrice) || 0;
+      if (!name || price <= 0) return;
+      if (!Array.isArray(state.wishlist)) state.wishlist = [];
+      state.wishlist.push({
+        id: 'w-' + Date.now().toString(36) + Math.random().toString(36).substr(2, 4),
+        name,
+        cost: price,
+        checked: true
+      });
+      saveState();
+      renderWishlist();
       evaluatePurchase();
+      showToast(`Added ${name} (${fmt(price)})`);
     });
   });
 
-  // Actions with Instant Undo
-  $('recordPurchaseBtn')?.addEventListener('click', () => {
-    const name = $('itemName').value.trim() || 'Purchase';
-    const cost = Number($('itemCost').value) || 0;
-    if (cost <= 0) return;
+  $('clearWishlistBtn')?.addEventListener('click', () => {
+    if (!state.wishlist || state.wishlist.length === 0) return;
+    const prevWishlist = JSON.parse(JSON.stringify(state.wishlist));
+    state.wishlist = [];
+    saveState();
+    renderWishlist();
+    evaluatePurchase();
+    showToast('Wishlist clear ho gayi!', () => {
+      state.wishlist = prevWishlist;
+      saveState();
+      renderWishlist();
+      evaluatePurchase();
+      showToast('Wishlist wapas restore ho gayi!');
+    });
+  });
 
+  $('recordPurchaseBtn')?.addEventListener('click', () => {
+    const checkedItems = (state.wishlist || []).filter(item => item.checked !== false);
+    const totalCost = checkedItems.reduce((sum, item) => sum + (Number(item.cost) || 0), 0);
+    if (totalCost <= 0) return;
+
+    const names = checkedItems.map(i => i.name).join(', ');
     const prevBal = state.bankBalance;
+    const prevWishlist = JSON.parse(JSON.stringify(state.wishlist));
     const entryId = 'buy-' + Date.now().toString(36);
-    state.bankBalance = Math.max(0, state.bankBalance - cost);
+
+    state.bankBalance = Math.max(0, state.bankBalance - totalCost);
+    state.wishlist = (state.wishlist || []).filter(item => item.checked === false);
     state.history.push({
       id: entryId,
       type: 'purchase',
-      name,
-      amount: cost,
+      name: `Shopping (${names})`,
+      amount: totalCost,
       date: new Date().toISOString().split('T')[0]
     });
     saveState();
     render();
-    showToast(`Deducted ${fmt(cost)} for "${name}".`, () => {
+    showToast(`Deducted ${fmt(totalCost)} for ${names}!`, () => {
       state.bankBalance = prevBal;
+      state.wishlist = prevWishlist;
       state.history = state.history.filter(x => x.id !== entryId);
       saveState();
       render();
-      showToast('Reversed purchase.');
+      showToast('Purchase reverse kar diya gaya!');
     });
   });
 
