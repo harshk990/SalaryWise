@@ -1177,6 +1177,7 @@ svg { display: block; flex-shrink: 0; }
   <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="M3 3v5h5M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="M21 21v-5h-5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
   <symbol id="i-upload" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="12" cy="12" r="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="2" fill="currentColor"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="7" r="4" fill="none" stroke="currentColor" stroke-width="2.2"/></symbol>
 </svg>
 
 <div class="shell">
@@ -1185,6 +1186,16 @@ svg { display: block; flex-shrink: 0; }
     <div class="brand" data-page="balance" style="cursor:pointer" title="Go to Bank Balance">
       <div class="brandmark"><svg><use href="#i-spark"></use></svg></div>
       SalaryWise
+    </div>
+    <div id="sidebarUserBadge" style="display:flex;align-items:center;justify-content:space-between;padding:8px 12px;margin:2px 8px 10px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;cursor:pointer;transition:all 0.15s" title="Switch or Add Account">
+      <div style="display:flex;align-items:center;gap:8px;min-width:0">
+        <span id="sidebarUserAvatar" style="width:26px;height:26px;border-radius:50%;background:#059669;color:#fff;display:inline-grid;place-items:center;font-size:11px;font-weight:800;flex-shrink:0">H</span>
+        <div style="min-width:0">
+          <strong id="sidebarUserName" style="display:block;font-size:12px;color:#0f172a;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Harsh</strong>
+          <span style="font-size:10px;color:#64748b">Switch Account</span>
+        </div>
+      </div>
+      <svg style="width:13px;height:13px;color:#64748b"><use href="#i-refresh"></use></svg>
     </div>
     <nav class="navlist">
       <button class="navbtn active" data-page="balance">
@@ -1220,13 +1231,24 @@ svg { display: block; flex-shrink: 0; }
         <div class="brandmark" style="width:28px;height:28px"><svg style="width:15px;height:15px"><use href="#i-spark"></use></svg></div>
         SalaryWise
       </div>
-      <button class="btn tiny" id="mobileQuickBuyBtn"><svg><use href="#i-spark"></use></svg>Kharcha Test</button>
+      <div style="display:flex;align-items:center;gap:6px">
+        <button class="btn secondary tiny" id="mobileUserSwitchBtn" style="padding:4px 8px;font-size:11.5px;display:flex;align-items:center;gap:5px" title="Switch or Add Account">
+          <span id="mobileUserAvatar" style="width:18px;height:18px;border-radius:50%;background:#059669;color:#fff;display:inline-grid;place-items:center;font-size:9.5px;font-weight:800">H</span>
+          <span id="mobileUserName">Harsh</span>
+        </button>
+        <button class="btn tiny" id="mobileQuickBuyBtn"><svg><use href="#i-spark"></use></svg>Kharcha Test</button>
+      </div>
     </div>
 
     <!-- Topbar -->
     <header class="topbar">
       <h1 class="h1" id="pageTitle">Bank Balance &amp; Capital</h1>
       <div class="top-actions">
+        <button class="btn secondary tiny" id="userSwitchTopBtn" style="display:inline-flex;align-items:center;gap:6px;font-weight:700" title="Switch or Add Account">
+          <span id="topUserAvatar" style="width:20px;height:20px;border-radius:50%;background:#059669;color:#fff;display:inline-grid;place-items:center;font-size:10px;font-weight:800">H</span>
+          <span id="topUserName">Harsh</span>
+          <span style="font-size:9px;opacity:0.6">▼</span>
+        </button>
         <button class="btn secondary tiny" id="editBalanceTopBtn"><svg><use href="#i-wallet"></use></svg>Update Balance</button>
         <button class="btn tonal tiny" id="creditSalaryTopBtn"><svg><use href="#i-plus"></use></svg>Add Salary</button>
       </div>
@@ -1835,9 +1857,86 @@ window.EMBEDDED_STATEMENT_DATA = {"meta":{"bank":"HDFC Bank Ltd.","accountNo":"5
       </label>
       <div style="display:flex;gap:8px">
         <button type="button" class="btn secondary" id="cancelUploadStmtModal" style="flex:1">Cancel</button>
-        <button type="button" class="btn tonal" id="simulateSampleImportBtn" style="flex:1">Load Harsh's Sample (.xls)</button>
+        <button type="button" class="btn tonal" id="simulateSampleImportBtn" style="flex:1">Load Sample Statement (.xls)</button>
       </div>
     </div>
+  </div>
+</div>
+
+<!-- Accounts / Multi-User Modal -->
+<div class="modalwrap" id="userAccountsModal" aria-hidden="true">
+  <div class="modal" style="max-width:440px">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+      <div>
+        <h3 style="margin:0 0 2px;font-size:16px;font-weight:800">Accounts &amp; Users</h3>
+        <span style="font-size:12px;color:#64748b">Switch karein ya naya account banayein</span>
+      </div>
+      <button class="iconbtn" id="closeUserAccountsModal" aria-label="Close modal"><svg><use href="#i-x"></use></svg></button>
+    </div>
+
+    <!-- Accounts list -->
+    <div id="usersListContainer" style="display:flex;flex-direction:column;gap:8px;max-height:280px;overflow-y:auto;margin-bottom:14px;padding-right:2px">
+      <!-- Dynamic account cards rendered here -->
+    </div>
+
+    <!-- Add account trigger button -->
+    <button type="button" class="btn tonal" id="openCreateUserBtn" style="width:100%;height:40px;font-weight:700;font-size:13px;justify-content:center">
+      <svg style="width:15px;height:15px"><use href="#i-plus"></use></svg>+ Naya Account Banao (Start Fresh)
+    </button>
+  </div>
+</div>
+
+<!-- Create New User Modal -->
+<div class="modalwrap" id="createUserModal" aria-hidden="true">
+  <div class="modal" style="max-width:440px">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+      <div>
+        <h3 style="margin:0 0 2px;font-size:16px;font-weight:800">Naya Account Banayein</h3>
+        <span style="font-size:12px;color:#64748b">Inka data alag aur fresh rahega</span>
+      </div>
+      <button class="iconbtn" id="closeCreateUserModal" aria-label="Close modal"><svg><use href="#i-x"></use></svg></button>
+    </div>
+
+    <form id="createUserForm">
+      <div style="display:grid;gap:12px;margin-bottom:16px">
+        <div>
+          <label style="display:block;font-size:12px;font-weight:700;color:#64748b;margin-bottom:4px" for="newUserNameInput">Account Holder Ka Naam</label>
+          <input id="newUserNameInput" type="text" placeholder="e.g. Rahul, Priya, Personal 2" style="width:100%;height:40px;font-size:14px;font-weight:600;padding:6px 12px;border:1px solid #cbd5e1;border-radius:8px" required>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+          <div>
+            <label style="display:block;font-size:12px;font-weight:700;color:#64748b;margin-bottom:4px" for="newUserBalanceInput">Starting Balance (₹)</label>
+            <input id="newUserBalanceInput" type="number" min="0" step="any" placeholder="0" value="0" style="width:100%;height:40px;font-size:15px;font-weight:700;padding:6px 12px;border:1px solid #cbd5e1;border-radius:8px">
+          </div>
+          <div>
+            <label style="display:block;font-size:12px;font-weight:700;color:#64748b;margin-bottom:4px" for="newUserSalaryInput">Monthly Salary (₹)</label>
+            <input id="newUserSalaryInput" type="number" min="0" step="any" placeholder="0" value="0" style="width:100%;height:40px;font-size:15px;font-weight:700;padding:6px 12px;border:1px solid #cbd5e1;border-radius:8px">
+          </div>
+        </div>
+
+        <div>
+          <label style="display:block;font-size:12px;font-weight:700;color:#64748b;margin-bottom:4px" for="newUserColorSelect">Avatar Color</label>
+          <select id="newUserColorSelect" style="width:100%;height:40px;font-size:13.5px;font-weight:600;padding:6px 10px;border:1px solid #cbd5e1;border-radius:8px">
+            <option value="#2563eb" selected>Royal Blue</option>
+            <option value="#059669">Emerald Green</option>
+            <option value="#7c3aed">Purple</option>
+            <option value="#ea580c">Orange</option>
+            <option value="#db2777">Pink / Rose</option>
+            <option value="#0f172a">Dark Slate</option>
+          </select>
+        </div>
+
+        <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:10px;font-size:11.5px;color:#64748b;line-height:1.4">
+          💡 Is naye account me sab kuch starting se zero hoga, taaki wo apna bank balance, salary, dues aur wishlist khud dal sakein. Aapka pehla account bilkul safe rahega.
+        </div>
+      </div>
+
+      <div style="display:flex;gap:8px">
+        <button type="button" class="btn secondary" id="cancelCreateUserModal" style="flex:1">Cancel</button>
+        <button type="submit" class="btn" style="flex:1">Account Banao</button>
+      </div>
+    </form>
   </div>
 </div>
 
@@ -1849,7 +1948,9 @@ window.EMBEDDED_STATEMENT_DATA = {"meta":{"bank":"HDFC Bank Ltd.","accountNo":"5
 
 <script>
 (() => {
-  const STORAGE_KEY = 'salarywise_user_profile_v2';
+  const USERS_MANIFEST_KEY = 'salarywise_users_manifest_v1';
+  const ACTIVE_USER_KEY = 'salarywise_active_user_id';
+  const DEFAULT_HARSH_PROFILE_KEY = 'salarywise_user_profile_v2';
 
   // Category Colors for Visual Spectrum Bar
   const PALETTE = [
@@ -1872,6 +1973,7 @@ window.EMBEDDED_STATEMENT_DATA = {"meta":{"bank":"HDFC Bank Ltd.","accountNo":"5
   ];
 
   const defaultState = () => ({
+    userName: 'Harsh',
     bankBalance: 353538,
     salary: 85000,
     houseGoal: {
@@ -1927,45 +2029,105 @@ window.EMBEDDED_STATEMENT_DATA = {"meta":{"bank":"HDFC Bank Ltd.","accountNo":"5
     statementCleared: false
   });
 
-  let state = defaultState();
-  let lastActionUndo = null;
+  const blankState = (userName = 'User') => ({
+    userName,
+    bankBalance: 0,
+    salary: 0,
+    houseGoal: {
+      total: 0,
+      paid: 0,
+      monthlyTarget: 0
+    },
+    fixedExpenses: [],
+    history: [],
+    goals: [],
+    wishlist: [],
+    statementData: null,
+    statementCleared: true
+  });
 
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (raw) {
-      const parsed = JSON.parse(raw);
-      state = { ...defaultState(), ...parsed };
-      if (!Array.isArray(state.fixedExpenses)) {
-        state.fixedExpenses = defaultState().fixedExpenses;
-      } else {
-        // Automatically remove house installment from fixed dues if previously saved
-        state.fixedExpenses = state.fixedExpenses.filter(x => x.id !== 'house');
+  function loadUsersManifest() {
+    try {
+      const raw = localStorage.getItem(USERS_MANIFEST_KEY);
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
       }
-      if (!Array.isArray(state.goals)) {
-        state.goals = defaultState().goals;
-      } else {
-        if (!state.goals.some(g => g.id === 'goal-house' || g.name.toLowerCase().includes('house')) && !state.houseGoalDeleted) {
-          state.goals.unshift({
-            id: 'goal-house',
-            name: 'Dream House Down Payment',
-            target: (state.houseGoal && state.houseGoal.total) || 6000000,
-            saved: (state.houseGoal && state.houseGoal.paid) || 1500000,
-            category: 'House',
-            color: '#059669'
-          });
+    } catch (e) {}
+
+    const initial = [
+      {
+        id: 'u_harsh',
+        name: 'Harsh',
+        color: '#059669',
+        storageKey: DEFAULT_HARSH_PROFILE_KEY,
+        createdAt: '2026-09-01'
+      }
+    ];
+    try { localStorage.setItem(USERS_MANIFEST_KEY, JSON.stringify(initial)); } catch (e) {}
+    return initial;
+  }
+
+  function getActiveUserId() {
+    let uid = null;
+    try { uid = localStorage.getItem(ACTIVE_USER_KEY); } catch (e) {}
+    const users = loadUsersManifest();
+    if (uid && users.some(u => u.id === uid)) return uid;
+    const defaultUid = users[0].id;
+    try { localStorage.setItem(ACTIVE_USER_KEY, defaultUid); } catch (e) {}
+    return defaultUid;
+  }
+
+  let usersList = loadUsersManifest();
+  let activeUserId = getActiveUserId();
+  let activeUser = usersList.find(u => u.id === activeUserId) || usersList[0];
+  let STORAGE_KEY = activeUser ? activeUser.storageKey : DEFAULT_HARSH_PROFILE_KEY;
+
+  function loadUserState(userObj) {
+    if (!userObj) return defaultState();
+    const isHarsh = userObj.id === 'u_harsh';
+    let base = isHarsh ? defaultState() : blankState(userObj.name);
+
+    try {
+      const raw = localStorage.getItem(userObj.storageKey);
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        base = { ...base, ...parsed };
+        if (!Array.isArray(base.fixedExpenses)) {
+          base.fixedExpenses = isHarsh ? defaultState().fixedExpenses : [];
+        } else if (isHarsh) {
+          base.fixedExpenses = base.fixedExpenses.filter(x => x.id !== 'house');
+        }
+        if (!Array.isArray(base.goals)) {
+          base.goals = isHarsh ? defaultState().goals : [];
+        } else if (isHarsh) {
+          if (!base.goals.some(g => g.id === 'goal-house' || g.name.toLowerCase().includes('house')) && !base.houseGoalDeleted) {
+            base.goals.unshift({
+              id: 'goal-house',
+              name: 'Dream House Down Payment',
+              target: (base.houseGoal && base.houseGoal.total) || 6000000,
+              saved: (base.houseGoal && base.houseGoal.paid) || 1500000,
+              category: 'House',
+              color: '#059669'
+            });
+          }
+        }
+        if (!Array.isArray(base.wishlist)) {
+          base.wishlist = isHarsh ? defaultState().wishlist : [];
+        }
+        if (parsed.statementData !== undefined) {
+          base.statementData = parsed.statementData;
+        }
+        if (parsed.statementCleared !== undefined) {
+          base.statementCleared = Boolean(parsed.statementCleared);
         }
       }
-      if (!Array.isArray(state.wishlist)) {
-        state.wishlist = defaultState().wishlist;
-      }
-      if (parsed.statementData !== undefined) {
-        state.statementData = parsed.statementData;
-      }
-      if (parsed.statementCleared !== undefined) {
-        state.statementCleared = Boolean(parsed.statementCleared);
-      }
-    }
-  } catch (e) {}
+    } catch (e) {}
+    return base;
+  }
+
+  let state = loadUserState(activeUser);
+  let lastActionUndo = null;
 
   function saveState() {
     try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (e) {}
@@ -2238,6 +2400,7 @@ window.EMBEDDED_STATEMENT_DATA = {"meta":{"bank":"HDFC Bank Ltd.","accountNo":"5
 
   // RENDER APP
   function render() {
+    updateUserBadges();
     const totalFixed = getTotalFixed();
     const surplus = getMonthlySurplus();
     const safeBuffer = totalFixed * 2;
@@ -2614,6 +2777,198 @@ window.EMBEDDED_STATEMENT_DATA = {"meta":{"bank":"HDFC Bank Ltd.","accountNo":"5
     saveState();
     render();
     showToast(`Salary incremented to ${fmt(state.salary)}!`);
+  });
+
+  // Multi-User Profile Engine
+  function updateUserBadges() {
+    const name = activeUser ? activeUser.name : 'Harsh';
+    const initial = (name || 'U').charAt(0).toUpperCase();
+    const color = activeUser ? (activeUser.color || '#059669') : '#059669';
+
+    if ($('sidebarUserName')) $('sidebarUserName').textContent = name;
+    if ($('sidebarUserAvatar')) {
+      $('sidebarUserAvatar').textContent = initial;
+      $('sidebarUserAvatar').style.background = color;
+    }
+    if ($('topUserName')) $('topUserName').textContent = name;
+    if ($('topUserAvatar')) {
+      $('topUserAvatar').textContent = initial;
+      $('topUserAvatar').style.background = color;
+    }
+    if ($('mobileUserName')) $('mobileUserName').textContent = name;
+    if ($('mobileUserAvatar')) {
+      $('mobileUserAvatar').textContent = initial;
+      $('mobileUserAvatar').style.background = color;
+    }
+  }
+
+  function switchUser(newUserId) {
+    saveState();
+    const manifest = loadUsersManifest();
+    const target = manifest.find(u => u.id === newUserId);
+    if (!target) return;
+
+    activeUserId = target.id;
+    activeUser = target;
+    STORAGE_KEY = target.storageKey;
+    try { localStorage.setItem(ACTIVE_USER_KEY, activeUserId); } catch (e) {}
+
+    state = loadUserState(target);
+    updateUserBadges();
+    renderUsersModal();
+    render();
+    closeUserAccountsModal();
+    showToast(`Switched to "${target.name}"`);
+  }
+
+  function createNewUser(name, color, startBal = 0, startSalary = 0) {
+    const trimmed = (name || '').trim();
+    if (!trimmed) return;
+
+    const id = 'u_' + Date.now().toString(36) + Math.random().toString(36).substr(2, 4);
+    const storageKey = 'salarywise_profile_' + id;
+    const newUser = {
+      id,
+      name: trimmed,
+      color: color || '#2563eb',
+      storageKey,
+      createdAt: new Date().toISOString()
+    };
+
+    const manifest = loadUsersManifest();
+    manifest.push(newUser);
+    try { localStorage.setItem(USERS_MANIFEST_KEY, JSON.stringify(manifest)); } catch (e) {}
+
+    const bal = Math.max(0, Number(startBal) || 0);
+    const sal = Math.max(0, Number(startSalary) || 0);
+    const freshState = {
+      ...blankState(newUser.name),
+      bankBalance: bal,
+      salary: sal,
+      history: bal > 0 ? [{ id: 'init-bal', type: 'credit', name: 'Opening Balance', amount: bal, date: new Date().toISOString().split('T')[0] }] : []
+    };
+    try { localStorage.setItem(storageKey, JSON.stringify(freshState)); } catch (e) {}
+
+    switchUser(id);
+    closeCreateUserModal();
+    closeUserAccountsModal();
+    showToast(`Account "${newUser.name}" ban gaya!`);
+  }
+
+  function deleteUser(userId) {
+    let manifest = loadUsersManifest();
+    if (manifest.length <= 1) {
+      showToast('Kam se kam ek account rehna zaroori hai!');
+      return;
+    }
+    const toDelete = manifest.find(u => u.id === userId);
+    if (!toDelete) return;
+
+    if (!confirm(`Kya aap "${toDelete.name}" ka account aur unka data delete karna chahte hain?`)) return;
+
+    try { localStorage.removeItem(toDelete.storageKey); } catch (e) {}
+    manifest = manifest.filter(u => u.id !== userId);
+    try { localStorage.setItem(USERS_MANIFEST_KEY, JSON.stringify(manifest)); } catch (e) {}
+
+    if (activeUserId === userId) {
+      switchUser(manifest[0].id);
+    } else {
+      renderUsersModal();
+    }
+    showToast(`Account "${toDelete.name}" delete ho gaya.`);
+  }
+
+  function renderUsersModal() {
+    const container = $('usersListContainer');
+    if (!container) return;
+    const manifest = loadUsersManifest();
+
+    container.innerHTML = manifest.map(u => {
+      const isActive = u.id === activeUserId;
+      const initial = (u.name || 'U').charAt(0).toUpperCase();
+      let previewStats = 'Fresh Account';
+      try {
+        const raw = localStorage.getItem(u.storageKey);
+        if (raw) {
+          const p = JSON.parse(raw);
+          previewStats = `Balance: ${fmt(p.bankBalance || 0)} · Salary: ${fmt(p.salary || 0)}`;
+        }
+      } catch (e) {}
+
+      return `
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border:1.5px solid ${isActive ? '#059669' : '#e2e8f0'};background:${isActive ? '#ecfdf5' : '#ffffff'};border-radius:10px;gap:10px">
+          <div style="display:flex;align-items:center;gap:10px;min-width:0;flex:1">
+            <span style="width:34px;height:34px;border-radius:50%;background:${u.color || '#059669'};color:#ffffff;display:inline-grid;place-items:center;font-weight:800;font-size:13px;flex-shrink:0">
+              ${initial}
+            </span>
+            <div style="min-width:0">
+              <div style="display:flex;align-items:center;gap:6px">
+                <strong style="font-size:13.5px;color:#0f172a;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${escapeHtml(u.name)}</strong>
+                ${isActive ? '<span style="font-size:9.5px;font-weight:800;background:#059669;color:#ffffff;padding:1px 6px;border-radius:10px">ACTIVE</span>' : ''}
+              </div>
+              <div style="font-size:11px;color:#64748b;margin-top:1px">${previewStats}</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:6px">
+            ${!isActive ? `<button type="button" class="btn secondary tiny" data-switch-user="${u.id}" style="font-size:11px;padding:3px 9px">Switch</button>` : ''}
+            ${manifest.length > 1 && !isActive ? `<button type="button" class="iconbtn" data-delete-user="${u.id}" title="Delete Account" style="color:#ef4444;width:28px;height:28px"><svg style="width:14px;height:14px"><use href="#i-trash"></use></svg></button>` : ''}
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    container.querySelectorAll('[data-switch-user]').forEach(btn => {
+      btn.addEventListener('click', () => switchUser(btn.dataset.switchUser));
+    });
+
+    container.querySelectorAll('[data-delete-user]').forEach(btn => {
+      btn.addEventListener('click', () => deleteUser(btn.dataset.deleteUser));
+    });
+  }
+
+  function openUserAccountsModal() {
+    renderUsersModal();
+    $('userAccountsModal')?.classList.add('open');
+  }
+  function closeUserAccountsModal() {
+    $('userAccountsModal')?.classList.remove('open');
+  }
+  function openCreateUserModal() {
+    $('newUserNameInput').value = '';
+    $('newUserBalanceInput').value = '0';
+    $('newUserSalaryInput').value = '0';
+    $('createUserModal')?.classList.add('open');
+    setTimeout(() => $('newUserNameInput')?.focus(), 50);
+  }
+  function closeCreateUserModal() {
+    $('createUserModal')?.classList.remove('open');
+  }
+
+  // Account modal triggers & event listeners
+  $('userSwitchTopBtn')?.addEventListener('click', openUserAccountsModal);
+  $('mobileUserSwitchBtn')?.addEventListener('click', openUserAccountsModal);
+  $('sidebarUserBadge')?.addEventListener('click', openUserAccountsModal);
+  $('closeUserAccountsModal')?.addEventListener('click', closeUserAccountsModal);
+  $('userAccountsModal')?.addEventListener('click', (e) => {
+    if (e.target === $('userAccountsModal')) closeUserAccountsModal();
+  });
+  $('openCreateUserBtn')?.addEventListener('click', () => {
+    closeUserAccountsModal();
+    openCreateUserModal();
+  });
+  $('closeCreateUserModal')?.addEventListener('click', closeCreateUserModal);
+  $('cancelCreateUserModal')?.addEventListener('click', closeCreateUserModal);
+  $('createUserModal')?.addEventListener('click', (e) => {
+    if (e.target === $('createUserModal')) closeCreateUserModal();
+  });
+
+  $('createUserForm')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = $('newUserNameInput')?.value;
+    const bal = $('newUserBalanceInput')?.value;
+    const sal = $('newUserSalaryInput')?.value;
+    const color = $('newUserColorSelect')?.value;
+    createNewUser(name, color, bal, sal);
   });
 
   // Balance Modal
