@@ -1284,7 +1284,7 @@ svg { display: block; flex-shrink: 0; }
               </span>
               <div>
                 <strong style="display:block;font-size:13.5px">Goals</strong>
-                <span style="font-size:11.5px;color:#64748b">Dream House (₹15L paid) &amp; custom milestones</span>
+                <span style="font-size:11.5px;color:#64748b" id="jumpGoalsSub">Track milestones &amp; installments</span>
               </div>
             </div>
             <span class="btn secondary tiny" style="font-size:11.5px">View &rarr;</span>
@@ -1353,71 +1353,37 @@ svg { display: block; flex-shrink: 0; }
       </div>
     </section>
 
-    <!-- TAB 3: DREAM HOUSE GOAL TRACKER (₹60 LAKHS) -->
+    <!-- TAB 3: GOALS & MILESTONES -->
     <section class="view" id="view-house">
       <div class="stack">
-        <!-- 60 Lakhs Dream House Visual Graphic Card -->
-        <div class="house-visual-card">
-          <div class="house-top-row">
+        <!-- Goals Overview Hero Card -->
+        <div class="card" style="padding:22px;background:linear-gradient(135deg, #0f172a, #1e293b);color:#ffffff;border:none">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px">
             <div>
-              <span style="font-size:11px;font-weight:800;color:#94a3b8;letter-spacing:0.06em;text-transform:uppercase">Own House Goal (₹60 Lakhs)</span>
-              <div style="font-size:22px;font-weight:800;margin-top:2px">Dream Home Down Payment</div>
+              <span style="font-size:11px;font-weight:800;color:#94a3b8;letter-spacing:0.06em;text-transform:uppercase">Goals &amp; Milestones</span>
+              <div style="font-size:22px;font-weight:800;margin-top:2px" id="goalsOverviewTitle">Financial Goals</div>
+              <span style="font-size:12.5px;color:#94a3b8">Track, plan, and fund all your life milestones</span>
             </div>
-            <div class="house-pct-large" id="housePctBig">25.0%</div>
-          </div>
-
-          <!-- Big Shimmer Progress Bar -->
-          <div class="house-track-large">
-            <div class="house-fill-large" id="houseProgressFill" style="width:25%"></div>
-          </div>
-
-          <div class="house-split-labels">
-            <span>Paid: <b id="housePaidVal" style="color:#34d399">₹15,00,000</b></span>
-            <span>Remaining: <b id="houseRemainVal">₹45,00,000</b></span>
-          </div>
-
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:18px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.12);flex-wrap:wrap;gap:10px">
-            <span style="font-size:12px;color:#94a3b8" id="houseEtaText">~90 monthly installments remaining at ₹50k/mo</span>
-            <button class="btn tiny" id="recordHousePayBtn" style="background:#ffffff;color:#0f172a;font-weight:800">
-              <svg><use href="#i-plus"></use></svg>Pay ₹50k Installment
-            </button>
-          </div>
-        </div>
-
-        <!-- House Milestone Plan Card -->
-        <div class="card" style="padding:18px">
-          <h3 style="margin:0 0 10px;font-size:15px;font-weight:800">Lump Sum Accumulation Strategy</h3>
-          <p style="margin:0 0 12px;color:#64748b;font-size:13px;line-height:1.6">
-            You pay <b>₹50,000 lump sum</b> towards your <b>₹60 Lakhs</b> house after saving 3–4 months of accumulated salary surplus. 
-            Because house payments are funded from accumulated surplus (not cut as an inflexible monthly fixed due), your living expenses and 2-month reserve (₹66,800) remain 100% protected and tension-free.
-          </p>
-          <div style="display:flex;gap:10px;flex-wrap:wrap">
-            <span class="pill" style="cursor:default"><b>Lump Sum:</b> ₹50k per batch</span>
-            <span class="pill" style="cursor:default"><b>Paid:</b> ₹15 Lakhs (25%)</span>
-            <span class="pill" style="cursor:default"><b>Balance:</b> ₹45 Lakhs (75%)</span>
-            <span class="pill" style="cursor:default"><b>Monthly Surplus:</b> ₹51.6k / mo</span>
-          </div>
-        </div>
-
-        <!-- Additional Goals & Milestones Section -->
-        <div class="card" style="padding:18px">
-          <div class="cardhead" style="margin-bottom:14px;flex-wrap:wrap;gap:10px">
-            <div>
-              <h3 style="margin:0 0 4px;font-size:16px;font-weight:800;display:flex;align-items:center;gap:8px">
-                <svg style="width:18px;height:18px;color:#00639a"><use href="#i-target"></use></svg>
-                Additional Goals &amp; Milestones
-              </h3>
-              <span style="font-size:12px;color:#64748b">Track custom savings milestones alongside your dream home</span>
-            </div>
-            <button class="btn tiny" id="openAddGoalBtn" style="padding:6px 14px;font-size:12px">
-              <svg style="width:14px;height:14px"><use href="#i-plus"></use></svg>Add Goal
+            <button class="btn tiny" id="openAddGoalBtn" style="background:#ffffff;color:#0f172a;font-weight:800;padding:8px 16px;font-size:13px">
+              <svg><use href="#i-plus"></use></svg>Add Goal
             </button>
           </div>
 
-          <!-- List of custom goals -->
-          <div id="customGoalsList" style="display:flex;flex-direction:column;gap:12px">
-            <!-- Dynamic goal cards rendered by JS -->
+          <!-- Aggregate Progress Track -->
+          <div style="margin-top:18px">
+            <div style="display:flex;justify-content:space-between;font-size:12.5px;font-weight:700;color:#cbd5e1;margin-bottom:6px">
+              <span>Total Accumulated: <b id="totalGoalsSavedVal" style="color:#34d399">₹0</b></span>
+              <span>Total Target: <b id="totalGoalsTargetVal" style="color:#ffffff">₹0</b> (<span id="totalGoalsPct">0%</span>)</span>
+            </div>
+            <div style="height:12px;background:rgba(255,255,255,0.12);border-radius:9999px;overflow:hidden">
+              <div id="totalGoalsProgressBar" style="height:100%;width:0%;background:linear-gradient(90deg, #10b981, #34d399);border-radius:9999px;transition:width 0.5s ease"></div>
+            </div>
           </div>
+        </div>
+
+        <!-- Goals List Container -->
+        <div id="customGoalsList" style="display:flex;flex-direction:column;gap:12px">
+          <!-- Dynamic goal cards rendered by JS -->
         </div>
       </div>
     </section>
@@ -1746,6 +1712,7 @@ svg { display: block; flex-shrink: 0; }
           <div>
             <label style="display:block;font-size:12px;font-weight:700;color:#64748b;margin-bottom:4px" for="goalCategoryInput">Category</label>
             <select id="goalCategoryInput" style="width:100%;height:40px;font-size:13.5px;font-weight:600;padding:6px 8px;border:1px solid #cbd5e1;border-radius:8px">
+              <option value="House">House / Real Estate</option>
               <option value="Safety">Safety / Emergency</option>
               <option value="Vehicle">Vehicle / Car</option>
               <option value="Investment">Investment / Gold</option>
@@ -1757,9 +1724,9 @@ svg { display: block; flex-shrink: 0; }
           <div>
             <label style="display:block;font-size:12px;font-weight:700;color:#64748b;margin-bottom:4px" for="goalColorInput">Color Accent</label>
             <select id="goalColorInput" style="width:100%;height:40px;font-size:13.5px;font-weight:600;padding:6px 8px;border:1px solid #cbd5e1;border-radius:8px">
+              <option value="#059669">Emerald Green</option>
               <option value="#0284c7">Sky Blue</option>
               <option value="#7c3aed">Purple</option>
-              <option value="#059669">Emerald Green</option>
               <option value="#ea580c">Orange</option>
               <option value="#db2777">Pink / Rose</option>
               <option value="#d97706">Amber</option>
@@ -1780,7 +1747,7 @@ svg { display: block; flex-shrink: 0; }
 <div class="modalwrap" id="contributeGoalModal" aria-hidden="true">
   <div class="modal">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
-      <h3 style="margin:0;font-size:16px;font-weight:800">Add Funds to Goal</h3>
+      <h3 style="margin:0;font-size:16px;font-weight:800">Add Funds / Pay Installment</h3>
       <button class="iconbtn" id="closeContributeGoalModal" aria-label="Close modal"><svg><use href="#i-x"></use></svg></button>
     </div>
     <form id="contributeGoalForm">
@@ -1792,7 +1759,13 @@ svg { display: block; flex-shrink: 0; }
         </div>
         <div>
           <label style="display:block;font-size:12px;font-weight:700;color:#64748b;margin-bottom:4px" for="contributeAmountInput">Contribution Amount (₹)</label>
-          <input id="contributeAmountInput" type="number" min="1" step="any" placeholder="e.g. 10000" style="width:100%;height:40px;font-size:16px;font-weight:800;padding:6px 12px;border:1px solid #cbd5e1;border-radius:8px" required>
+          <input id="contributeAmountInput" type="number" min="1" step="any" placeholder="e.g. 50000" style="width:100%;height:40px;font-size:16px;font-weight:800;padding:6px 12px;border:1px solid #cbd5e1;border-radius:8px" required>
+        </div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap">
+          <button type="button" class="btn secondary tiny" data-contrib-quick="10000" style="font-size:11px;padding:4px 8px">+₹10k</button>
+          <button type="button" class="btn secondary tiny" data-contrib-quick="25000" style="font-size:11px;padding:4px 8px">+₹25k</button>
+          <button type="button" class="btn secondary tiny" data-contrib-quick="50000" style="font-size:11px;padding:4px 8px">+₹50k (Installment)</button>
+          <button type="button" class="btn secondary tiny" data-contrib-quick="100000" style="font-size:11px;padding:4px 8px">+₹1 Lakh</button>
         </div>
         <label style="display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600;color:#0f172a;cursor:pointer">
           <input type="checkbox" id="contributeDeductBalanceCheckbox" checked style="width:16px;height:16px;accent-color:#0284c7">
@@ -1889,6 +1862,14 @@ svg { display: block; flex-shrink: 0; }
     ],
     goals: [
       {
+        id: 'goal-house',
+        name: 'Dream House Down Payment',
+        target: 6000000,
+        saved: 1500000,
+        category: 'House',
+        color: '#059669'
+      },
+      {
         id: 'goal-emergency',
         name: 'Emergency Fund (6 Months)',
         target: 200000,
@@ -1925,6 +1906,17 @@ svg { display: block; flex-shrink: 0; }
       }
       if (!Array.isArray(state.goals)) {
         state.goals = defaultState().goals;
+      } else {
+        if (!state.goals.some(g => g.id === 'goal-house' || g.name.toLowerCase().includes('house')) && !state.houseGoalDeleted) {
+          state.goals.unshift({
+            id: 'goal-house',
+            name: 'Dream House Down Payment',
+            target: (state.houseGoal && state.houseGoal.total) || 6000000,
+            saved: (state.houseGoal && state.houseGoal.paid) || 1500000,
+            category: 'House',
+            color: '#059669'
+          });
+        }
       }
       if (parsed.statementData !== undefined) {
         state.statementData = parsed.statementData;
@@ -2213,16 +2205,23 @@ svg { display: block; flex-shrink: 0; }
     if ($('metricSipVal')) $('metricSipVal').textContent = fmt(sip ? sip.amount : 6000);
     if ($('metricTotalFixed')) $('metricTotalFixed').textContent = fmt(totalFixed);
 
-    // House Goal Tracker
-    const house = state.houseGoal;
-    const housePct = Math.min(100, Math.max(0, (house.paid / house.total) * 100)).toFixed(1);
-    if ($('housePctBig')) $('housePctBig').textContent = housePct + '%';
-    if ($('houseProgressFill')) $('houseProgressFill').style.width = housePct + '%';
-    if ($('housePaidVal')) $('housePaidVal').textContent = fmt(house.paid);
-    const houseRemain = Math.max(0, house.total - house.paid);
-    if ($('houseRemainVal')) $('houseRemainVal').textContent = fmt(houseRemain);
-    const etaMonths = house.monthlyTarget > 0 ? Math.ceil(houseRemain / house.monthlyTarget) : 90;
-    if ($('houseEtaText')) $('houseEtaText').textContent = `~${etaMonths} monthly installments remaining at ₹50k/mo.`;
+    // Goals Overview Banner
+    const totalGoalTarget = (state.goals || []).reduce((sum, g) => sum + (Number(g.target) || 0), 0);
+    const totalGoalSaved = (state.goals || []).reduce((sum, g) => sum + (Number(g.saved) || 0), 0);
+    const overallGoalsPct = totalGoalTarget > 0 ? Math.min(100, (totalGoalSaved / totalGoalTarget) * 100).toFixed(1) : '0.0';
+
+    if ($('totalGoalsSavedVal')) $('totalGoalsSavedVal').textContent = fmt(totalGoalSaved);
+    if ($('totalGoalsTargetVal')) $('totalGoalsTargetVal').textContent = fmt(totalGoalTarget);
+    if ($('totalGoalsPct')) $('totalGoalsPct').textContent = overallGoalsPct + '%';
+    if ($('totalGoalsProgressBar')) $('totalGoalsProgressBar').style.width = overallGoalsPct + '%';
+    if ($('goalsOverviewTitle')) {
+      const count = (state.goals || []).length;
+      $('goalsOverviewTitle').textContent = count > 0 ? `${count} Active ${count === 1 ? 'Goal' : 'Goals'}` : 'Financial Goals';
+    }
+    if ($('jumpGoalsSub')) {
+      const count = (state.goals || []).length;
+      $('jumpGoalsSub').textContent = count > 0 ? `${count} active · ${fmt(totalGoalSaved)} saved` : 'Track milestones & installments';
+    }
 
     // Salary & Dues
     if ($('salaryInput')) $('salaryInput').value = state.salary;
@@ -2481,33 +2480,6 @@ svg { display: block; flex-shrink: 0; }
     });
   });
 
-  $('recordHousePayBtn')?.addEventListener('click', () => {
-    const payment = 50000;
-    const prevBal = state.bankBalance;
-    const prevPaid = state.houseGoal.paid;
-    const entryId = 'house-' + Date.now().toString(36);
-
-    state.bankBalance = Math.max(0, state.bankBalance - payment);
-    state.houseGoal.paid += payment;
-    state.history.push({
-      id: entryId,
-      type: 'house',
-      name: 'House Installment',
-      amount: payment,
-      date: new Date().toISOString().split('T')[0]
-    });
-    saveState();
-    render();
-    showToast(`Logged ${fmt(payment)} house installment!`, () => {
-      state.bankBalance = prevBal;
-      state.houseGoal.paid = prevPaid;
-      state.history = state.history.filter(x => x.id !== entryId);
-      saveState();
-      render();
-      showToast('Reversed payment.');
-    });
-  });
-
   // Salary
   $('salaryInput')?.addEventListener('input', (e) => {
     state.salary = Math.max(0, Number(e.target.value) || 0);
@@ -2701,10 +2673,16 @@ svg { display: block; flex-shrink: 0; }
 
     if (!Array.isArray(state.goals) || state.goals.length === 0) {
       list.innerHTML = `
-        <div style="text-align:center;padding:24px 16px;color:#64748b;font-size:13px;border:1.5px dashed #cbd5e1;border-radius:12px;background:#f8fafc">
-          No additional goals added yet. Click <b>"+ Add Goal"</b> above to set your first milestone!
+        <div style="text-align:center;padding:36px 20px;color:#64748b;font-size:13.5px;border:1.5px dashed #cbd5e1;border-radius:12px;background:#f8fafc">
+          <div style="font-size:26px;margin-bottom:8px">🎯</div>
+          <strong style="display:block;color:#0f172a;font-size:15px;margin-bottom:4px">No active goals</strong>
+          <span style="font-size:12.5px;color:#64748b;display:block;margin-bottom:14px">Set a savings target for your Dream House, Vehicle, Emergency Fund, or Vacation.</span>
+          <button class="btn tiny" id="emptyAddGoalBtn" style="padding:8px 18px;font-size:12.5px">
+            <svg><use href="#i-plus"></use></svg>Add Your First Goal
+          </button>
         </div>
       `;
+      $('emptyAddGoalBtn')?.addEventListener('click', () => openGoalModal());
       return;
     }
 
@@ -2782,12 +2760,20 @@ svg { display: block; flex-shrink: 0; }
         const idx = state.goals.findIndex(g => g.id === id);
         if (idx === -1) return;
         const removed = state.goals[idx];
+        if (removed.id === 'goal-house' || removed.name.toLowerCase().includes('house')) {
+          state.houseGoalDeleted = true;
+        }
         state.goals.splice(idx, 1);
         saveState();
+        render();
         renderGoals();
         showToast(`Removed goal "${removed.name}".`, () => {
+          if (removed.id === 'goal-house' || removed.name.toLowerCase().includes('house')) {
+            state.houseGoalDeleted = false;
+          }
           state.goals.splice(idx, 0, removed);
           saveState();
+          render();
           renderGoals();
           showToast(`Restored goal "${removed.name}".`);
         });
@@ -2817,8 +2803,8 @@ svg { display: block; flex-shrink: 0; }
       $('goalNameInput').value = '';
       $('goalTargetInput').value = '';
       $('goalSavedInput').value = 0;
-      $('goalCategoryInput').value = 'Safety';
-      $('goalColorInput').value = '#0284c7';
+      $('goalCategoryInput').value = 'House';
+      $('goalColorInput').value = '#059669';
     }
     modal.classList.add('open');
     setTimeout(() => $('goalNameInput').focus(), 50);
@@ -2871,6 +2857,7 @@ svg { display: block; flex-shrink: 0; }
 
     saveState();
     closeGoalModal();
+    render();
     renderGoals();
   });
 
@@ -2885,6 +2872,13 @@ svg { display: block; flex-shrink: 0; }
     $('contributeDeductBalanceCheckbox').checked = true;
     $('contributeGoalModal').classList.add('open');
     setTimeout(() => $('contributeAmountInput').focus(), 50);
+
+    // Wire up quick preset chips
+    document.querySelectorAll('[data-contrib-quick]').forEach(chip => {
+      chip.onclick = () => {
+        $('contributeAmountInput').value = chip.dataset.contribQuick;
+      };
+    });
   }
 
   function closeContributeModal() {
