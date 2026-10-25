@@ -665,6 +665,96 @@ svg { display: block; flex-shrink: 0; }
 }
 
 /* ========================================================
+   CUSTOM GOALS & MILESTONES
+======================================================== */
+.custom-goal-card {
+  background: var(--md-sys-color-surface-container);
+  border: 1px solid var(--md-sys-color-outline-variant);
+  border-radius: var(--md-shape-lg);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: transform var(--duration-fast) var(--ease-standard), box-shadow var(--duration-fast) var(--ease-standard);
+}
+.custom-goal-card:hover {
+  box-shadow: var(--md-shadow-1);
+}
+.goal-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.goal-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.goal-icon-badge {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--md-shape-md);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #ffffff;
+}
+.goal-title {
+  font-size: 15px;
+  font-weight: 800;
+  color: #0f172a;
+}
+.goal-cat-tag {
+  font-size: 11px;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.goal-pct-pill {
+  font-size: 13.5px;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: var(--md-shape-full);
+  background: #f1f5f9;
+  font-variant-numeric: tabular-nums;
+}
+.goal-track {
+  height: 10px;
+  background: rgba(0, 0, 0, 0.06);
+  border-radius: var(--md-shape-full);
+  overflow: hidden;
+  position: relative;
+}
+.goal-fill {
+  height: 100%;
+  border-radius: var(--md-shape-full);
+  transition: width 0.5s var(--ease-standard);
+}
+.goal-stats-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #64748b;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.goal-actions-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 10px;
+  border-top: 1px solid rgba(0,0,0,0.06);
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* ========================================================
    VISUAL EXPENSE PROPORTION BAR (macOS / iOS Style)
 ======================================================== */
 .expense-spectrum {
@@ -1061,6 +1151,7 @@ svg { display: block; flex-shrink: 0; }
   <symbol id="i-bank" viewBox="0 0 24 24"><path d="m2 9 10-6 10 6M4 9v10M8 9v10M12 9v10M16 9v10M20 9v10M2 19h20M2 22h20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="M3 3v5h5M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="M21 21v-5h-5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
   <symbol id="i-upload" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="12" cy="12" r="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="2" fill="currentColor"/></symbol>
 </svg>
 
 <div class="shell">
@@ -1078,7 +1169,7 @@ svg { display: block; flex-shrink: 0; }
         <svg><use href="#i-spark"></use></svg>Affordability
       </button>
       <button class="navbtn" data-page="house">
-        <svg><use href="#i-home"></use></svg>House Goal (₹60L)
+        <svg><use href="#i-target"></use></svg>Goals
       </button>
       <button class="navbtn" data-page="expenses">
         <svg><use href="#i-list"></use></svg>Monthly Dues
@@ -1189,11 +1280,11 @@ svg { display: block; flex-shrink: 0; }
           <div class="card" data-page="house" style="padding:16px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px;transition:transform var(--duration-fast) var(--ease-elastic)" onclick="nav('house')">
             <div style="display:flex;align-items:center;gap:12px">
               <span style="display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;background:#ecfdf5;color:#059669;border-radius:var(--md-shape-md)">
-                <svg style="width:20px;height:20px"><use href="#i-home"></use></svg>
+                <svg style="width:20px;height:20px"><use href="#i-target"></use></svg>
               </span>
               <div>
-                <strong style="display:block;font-size:13.5px">Dream House Goal (₹60L)</strong>
-                <span style="font-size:11.5px;color:#64748b">₹15 Lakhs paid · View tracker</span>
+                <strong style="display:block;font-size:13.5px">Goals</strong>
+                <span style="font-size:11.5px;color:#64748b">Dream House (₹15L paid) &amp; custom milestones</span>
               </div>
             </div>
             <span class="btn secondary tiny" style="font-size:11.5px">View &rarr;</span>
@@ -1305,6 +1396,27 @@ svg { display: block; flex-shrink: 0; }
             <span class="pill" style="cursor:default"><b>Paid:</b> ₹15 Lakhs (25%)</span>
             <span class="pill" style="cursor:default"><b>Balance:</b> ₹45 Lakhs (75%)</span>
             <span class="pill" style="cursor:default"><b>Monthly Surplus:</b> ₹51.6k / mo</span>
+          </div>
+        </div>
+
+        <!-- Additional Goals & Milestones Section -->
+        <div class="card" style="padding:18px">
+          <div class="cardhead" style="margin-bottom:14px;flex-wrap:wrap;gap:10px">
+            <div>
+              <h3 style="margin:0 0 4px;font-size:16px;font-weight:800;display:flex;align-items:center;gap:8px">
+                <svg style="width:18px;height:18px;color:#00639a"><use href="#i-target"></use></svg>
+                Additional Goals &amp; Milestones
+              </h3>
+              <span style="font-size:12px;color:#64748b">Track custom savings milestones alongside your dream home</span>
+            </div>
+            <button class="btn tiny" id="openAddGoalBtn" style="padding:6px 14px;font-size:12px">
+              <svg style="width:14px;height:14px"><use href="#i-plus"></use></svg>Add Goal
+            </button>
+          </div>
+
+          <!-- List of custom goals -->
+          <div id="customGoalsList" style="display:flex;flex-direction:column;gap:12px">
+            <!-- Dynamic goal cards rendered by JS -->
           </div>
         </div>
       </div>
@@ -1520,8 +1632,8 @@ svg { display: block; flex-shrink: 0; }
     <span>Afford</span>
   </button>
   <button data-page="house">
-    <svg style="width:20px;height:20px"><use href="#i-home"></use></svg>
-    <span>House</span>
+    <svg style="width:20px;height:20px"><use href="#i-target"></use></svg>
+    <span>Goals</span>
   </button>
   <button data-page="expenses">
     <svg style="width:20px;height:20px"><use href="#i-list"></use></svg>
@@ -1601,6 +1713,95 @@ svg { display: block; flex-shrink: 0; }
       <div style="display:flex;gap:8px">
         <button type="button" class="btn secondary" id="cancelAddDueModal" style="flex:1">Cancel</button>
         <button type="submit" class="btn" style="flex:1">Add Due</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Add / Edit Goal Modal -->
+<div class="modalwrap" id="goalModal" aria-hidden="true">
+  <div class="modal">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+      <h3 style="margin:0;font-size:16px;font-weight:800" id="goalModalTitle">Add New Goal</h3>
+      <button class="iconbtn" id="closeGoalModal" aria-label="Close modal"><svg><use href="#i-x"></use></svg></button>
+    </div>
+    <form id="goalForm">
+      <input type="hidden" id="goalEditId" value="">
+      <div style="display:grid;gap:12px;margin-bottom:16px">
+        <div>
+          <label style="display:block;font-size:12px;font-weight:700;color:#64748b;margin-bottom:4px" for="goalNameInput">Goal Name</label>
+          <input id="goalNameInput" type="text" placeholder="e.g. Car Down Payment, Emergency Fund, Vacation" style="width:100%;height:40px;font-size:14px;font-weight:600;padding:6px 12px;border:1px solid #cbd5e1;border-radius:8px" required>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+          <div>
+            <label style="display:block;font-size:12px;font-weight:700;color:#64748b;margin-bottom:4px" for="goalTargetInput">Target (₹)</label>
+            <input id="goalTargetInput" type="number" min="1" step="any" placeholder="e.g. 200000" style="width:100%;height:40px;font-size:15px;font-weight:800;padding:6px 12px;border:1px solid #cbd5e1;border-radius:8px" required>
+          </div>
+          <div>
+            <label style="display:block;font-size:12px;font-weight:700;color:#64748b;margin-bottom:4px" for="goalSavedInput">Already Saved (₹)</label>
+            <input id="goalSavedInput" type="number" min="0" step="any" placeholder="0" style="width:100%;height:40px;font-size:15px;font-weight:800;padding:6px 12px;border:1px solid #cbd5e1;border-radius:8px" required>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+          <div>
+            <label style="display:block;font-size:12px;font-weight:700;color:#64748b;margin-bottom:4px" for="goalCategoryInput">Category</label>
+            <select id="goalCategoryInput" style="width:100%;height:40px;font-size:13.5px;font-weight:600;padding:6px 8px;border:1px solid #cbd5e1;border-radius:8px">
+              <option value="Safety">Safety / Emergency</option>
+              <option value="Vehicle">Vehicle / Car</option>
+              <option value="Investment">Investment / Gold</option>
+              <option value="Travel">Travel / Vacation</option>
+              <option value="Gadget">Gadgets / Tech</option>
+              <option value="Personal">Personal Milestone</option>
+            </select>
+          </div>
+          <div>
+            <label style="display:block;font-size:12px;font-weight:700;color:#64748b;margin-bottom:4px" for="goalColorInput">Color Accent</label>
+            <select id="goalColorInput" style="width:100%;height:40px;font-size:13.5px;font-weight:600;padding:6px 8px;border:1px solid #cbd5e1;border-radius:8px">
+              <option value="#0284c7">Sky Blue</option>
+              <option value="#7c3aed">Purple</option>
+              <option value="#059669">Emerald Green</option>
+              <option value="#ea580c">Orange</option>
+              <option value="#db2777">Pink / Rose</option>
+              <option value="#d97706">Amber</option>
+              <option value="#0f172a">Slate Black</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;gap:8px">
+        <button type="button" class="btn secondary" id="cancelGoalModal" style="flex:1">Cancel</button>
+        <button type="submit" class="btn" style="flex:1">Save Goal</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Add Funds to Goal Modal -->
+<div class="modalwrap" id="contributeGoalModal" aria-hidden="true">
+  <div class="modal">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+      <h3 style="margin:0;font-size:16px;font-weight:800">Add Funds to Goal</h3>
+      <button class="iconbtn" id="closeContributeGoalModal" aria-label="Close modal"><svg><use href="#i-x"></use></svg></button>
+    </div>
+    <form id="contributeGoalForm">
+      <input type="hidden" id="contributeGoalId" value="">
+      <div style="display:grid;gap:12px;margin-bottom:16px">
+        <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:12px">
+          <strong id="contributeGoalTitle" style="display:block;font-size:14px;color:#0f172a">Goal Name</strong>
+          <span id="contributeGoalCurrentSaved" style="font-size:12px;color:#64748b">Current Saved: ₹0 / Target: ₹0</span>
+        </div>
+        <div>
+          <label style="display:block;font-size:12px;font-weight:700;color:#64748b;margin-bottom:4px" for="contributeAmountInput">Contribution Amount (₹)</label>
+          <input id="contributeAmountInput" type="number" min="1" step="any" placeholder="e.g. 10000" style="width:100%;height:40px;font-size:16px;font-weight:800;padding:6px 12px;border:1px solid #cbd5e1;border-radius:8px" required>
+        </div>
+        <label style="display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600;color:#0f172a;cursor:pointer">
+          <input type="checkbox" id="contributeDeductBalanceCheckbox" checked style="width:16px;height:16px;accent-color:#0284c7">
+          <span>Deduct from current Bank Balance</span>
+        </label>
+      </div>
+      <div style="display:flex;gap:8px">
+        <button type="button" class="btn secondary" id="cancelContributeGoalModal" style="flex:1">Cancel</button>
+        <button type="submit" class="btn" style="flex:1">Add Funds</button>
       </div>
     </form>
   </div>
@@ -1686,6 +1887,24 @@ svg { display: block; flex-shrink: 0; }
       { id: 'init-1', type: 'house', name: 'House Down Payment', amount: 1500000, date: '2026-09-01' },
       { id: 'init-2', type: 'salary', name: 'Salary Credit', amount: 85000, date: '2026-10-01' }
     ],
+    goals: [
+      {
+        id: 'goal-emergency',
+        name: 'Emergency Fund (6 Months)',
+        target: 200000,
+        saved: 80000,
+        category: 'Safety',
+        color: '#0284c7'
+      },
+      {
+        id: 'goal-car',
+        name: 'Car Down Payment',
+        target: 300000,
+        saved: 65000,
+        category: 'Vehicle',
+        color: '#7c3aed'
+      }
+    ],
     statementData: null,
     statementCleared: false
   });
@@ -1703,6 +1922,9 @@ svg { display: block; flex-shrink: 0; }
       } else {
         // Automatically remove house installment from fixed dues if previously saved
         state.fixedExpenses = state.fixedExpenses.filter(x => x.id !== 'house');
+      }
+      if (!Array.isArray(state.goals)) {
+        state.goals = defaultState().goals;
       }
       if (parsed.statementData !== undefined) {
         state.statementData = parsed.statementData;
@@ -1776,7 +1998,7 @@ svg { display: block; flex-shrink: 0; }
       balance: 'Bank Balance & Capital',
       dashboard: 'Bank Balance & Capital',
       advisor: 'Can I Afford It?',
-      house: 'Dream House Goal (₹60L)',
+      house: 'Goals',
       expenses: 'Monthly Fixed Dues',
       history: 'Payment Ledger',
       statement: 'Bank Statement Passbook'
@@ -2012,6 +2234,7 @@ svg { display: block; flex-shrink: 0; }
 
     renderExpenseSpectrum();
     renderExpenseTiles();
+    renderGoals();
     renderHistory();
     renderStatement();
     evaluatePurchase();
@@ -2175,6 +2398,14 @@ svg { display: block; flex-shrink: 0; }
           state.bankBalance += amt;
           state.houseGoal.paid = Math.max(0, state.houseGoal.paid - amt);
           balanceMsg = `Refunded ${fmt(amt)} to balance & updated house progress.`;
+        } else if (removed.type === 'goal') {
+          // Deleting goal contribution refunds balance & updates goal saved
+          state.bankBalance += amt;
+          if (Array.isArray(state.goals) && removed.goalId) {
+            const mg = state.goals.find(g => g.id === removed.goalId);
+            if (mg) mg.saved = Math.max(0, mg.saved - amt);
+          }
+          balanceMsg = `Refunded ${fmt(amt)} to balance & updated goal progress.`;
         } else {
           // Deleting any debit (purchase, fixed dues, etc.) refunds money to balance
           state.bankBalance += amt;
@@ -2193,6 +2424,12 @@ svg { display: block; flex-shrink: 0; }
           } else if (removed.type === 'house') {
             state.bankBalance = Math.max(0, state.bankBalance - amt);
             state.houseGoal.paid += amt;
+          } else if (removed.type === 'goal') {
+            state.bankBalance = Math.max(0, state.bankBalance - amt);
+            if (Array.isArray(state.goals) && removed.goalId) {
+              const mg = state.goals.find(g => g.id === removed.goalId);
+              if (mg) mg.saved += amt;
+            }
           } else {
             state.bankBalance = Math.max(0, state.bankBalance - amt);
           }
@@ -2452,6 +2689,257 @@ svg { display: block; flex-shrink: 0; }
       saveState();
       render();
       showToast(`Removed "${name}".`);
+    });
+  });
+
+  // ========================================================
+  // CUSTOM GOALS & MILESTONES ENGINE
+  // ========================================================
+  function renderGoals() {
+    const list = $('customGoalsList');
+    if (!list) return;
+
+    if (!Array.isArray(state.goals) || state.goals.length === 0) {
+      list.innerHTML = `
+        <div style="text-align:center;padding:24px 16px;color:#64748b;font-size:13px;border:1.5px dashed #cbd5e1;border-radius:12px;background:#f8fafc">
+          No additional goals added yet. Click <b>"+ Add Goal"</b> above to set your first milestone!
+        </div>
+      `;
+      return;
+    }
+
+    list.innerHTML = state.goals.map((goal, idx) => {
+      const target = Number(goal.target) || 1;
+      const saved = Number(goal.saved) || 0;
+      const pct = Math.min(100, Math.max(0, (saved / target) * 100));
+      const remaining = Math.max(0, target - saved);
+      const isComplete = saved >= target;
+      const col = goal.color || PALETTE[(idx + 2) % PALETTE.length];
+      const safeName = escapeHtml(goal.name);
+      const safeCat = escapeHtml(goal.category || 'Milestone');
+
+      return `
+        <div class="custom-goal-card" data-goal-id="${goal.id}">
+          <div class="goal-header-row">
+            <div class="goal-title-wrap">
+              <span class="goal-icon-badge" style="background:${col}">
+                <svg style="width:20px;height:20px"><use href="#i-target"></use></svg>
+              </span>
+              <div>
+                <div class="goal-title">${safeName}</div>
+                <div class="goal-cat-tag">${safeCat}</div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px">
+              ${isComplete ? '<span class="pill" style="background:#ecfdf5;color:#047857;font-weight:800">🎉 Achieved</span>' : ''}
+              <span class="goal-pct-pill" style="color:${col}">${pct.toFixed(1)}%</span>
+            </div>
+          </div>
+
+          <div class="goal-track">
+            <div class="goal-fill" style="width:${pct.toFixed(1)}%;background:${col}"></div>
+          </div>
+
+          <div class="goal-stats-row">
+            <span>Saved: <b style="color:#0f172a">${fmt(saved)}</b> of ${fmt(target)}</span>
+            <span>${isComplete ? '<b style="color:#059669">Target Reached!</b>' : `Remaining: <b>${fmt(remaining)}</b>`}</span>
+          </div>
+
+          <div class="goal-actions-row">
+            <span style="font-size:11.5px;color:#64748b">${shortFmt(saved)} / ${shortFmt(target)} accumulated</span>
+            <div style="display:flex;gap:6px">
+              <button class="btn tiny" data-contribute-goal="${goal.id}" style="padding:5px 12px;font-size:11.5px;background:${col};color:#ffffff;font-weight:700">
+                <svg style="width:12px;height:12px"><use href="#i-plus"></use></svg>Add Funds
+              </button>
+              <button class="btn secondary tiny" data-edit-goal="${goal.id}" style="padding:5px 10px;font-size:11.5px">
+                Edit
+              </button>
+              <button class="iconbtn" data-del-goal="${goal.id}" aria-label="Delete ${safeName}" title="Delete goal" style="width:30px;height:30px">
+                <svg style="width:14px;height:14px"><use href="#i-trash"></use></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    // Attach listeners
+    document.querySelectorAll('[data-contribute-goal]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        openContributeModal(btn.dataset.contributeGoal);
+      });
+    });
+
+    document.querySelectorAll('[data-edit-goal]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        openGoalModal(btn.dataset.editGoal);
+      });
+    });
+
+    document.querySelectorAll('[data-del-goal]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.dataset.delGoal;
+        const idx = state.goals.findIndex(g => g.id === id);
+        if (idx === -1) return;
+        const removed = state.goals[idx];
+        state.goals.splice(idx, 1);
+        saveState();
+        renderGoals();
+        showToast(`Removed goal "${removed.name}".`, () => {
+          state.goals.splice(idx, 0, removed);
+          saveState();
+          renderGoals();
+          showToast(`Restored goal "${removed.name}".`);
+        });
+      });
+    });
+  }
+
+  // Goal Create / Edit Modal
+  function openGoalModal(editId = null) {
+    const modal = $('goalModal');
+    if (!modal) return;
+    $('goalForm').reset();
+    if (editId) {
+      const g = state.goals.find(x => x.id === editId);
+      if (g) {
+        $('goalEditId').value = g.id;
+        $('goalModalTitle').textContent = 'Edit Goal';
+        $('goalNameInput').value = g.name;
+        $('goalTargetInput').value = g.target;
+        $('goalSavedInput').value = g.saved;
+        $('goalCategoryInput').value = g.category || 'Personal';
+        $('goalColorInput').value = g.color || '#0284c7';
+      }
+    } else {
+      $('goalEditId').value = '';
+      $('goalModalTitle').textContent = 'Add New Goal';
+      $('goalNameInput').value = '';
+      $('goalTargetInput').value = '';
+      $('goalSavedInput').value = 0;
+      $('goalCategoryInput').value = 'Safety';
+      $('goalColorInput').value = '#0284c7';
+    }
+    modal.classList.add('open');
+    setTimeout(() => $('goalNameInput').focus(), 50);
+  }
+
+  function closeGoalModal() {
+    $('goalModal')?.classList.remove('open');
+  }
+
+  $('openAddGoalBtn')?.addEventListener('click', () => openGoalModal());
+  $('closeGoalModal')?.addEventListener('click', closeGoalModal);
+  $('cancelGoalModal')?.addEventListener('click', closeGoalModal);
+  $('goalModal')?.addEventListener('click', (e) => {
+    if (e.target === $('goalModal')) closeGoalModal();
+  });
+
+  $('goalForm')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const editId = $('goalEditId').value.trim();
+    const name = $('goalNameInput').value.trim();
+    const target = Math.max(1, Number($('goalTargetInput').value) || 0);
+    const saved = Math.max(0, Number($('goalSavedInput').value) || 0);
+    const category = $('goalCategoryInput').value;
+    const color = $('goalColorInput').value;
+
+    if (!name || target <= 0) return;
+
+    if (editId) {
+      const g = state.goals.find(x => x.id === editId);
+      if (g) {
+        g.name = name;
+        g.target = target;
+        g.saved = saved;
+        g.category = category;
+        g.color = color;
+        showToast(`Updated goal "${name}".`);
+      }
+    } else {
+      const newGoal = {
+        id: 'goal-' + Date.now().toString(36),
+        name,
+        target,
+        saved,
+        category,
+        color
+      };
+      state.goals.push(newGoal);
+      showToast(`Added goal "${name}"!`);
+    }
+
+    saveState();
+    closeGoalModal();
+    renderGoals();
+  });
+
+  // Goal Contribution Modal
+  function openContributeModal(goalId) {
+    const goal = state.goals.find(g => g.id === goalId);
+    if (!goal) return;
+    $('contributeGoalId').value = goal.id;
+    $('contributeGoalTitle').textContent = goal.name;
+    $('contributeGoalCurrentSaved').textContent = `Current Saved: ${fmt(goal.saved)} / Target: ${fmt(goal.target)}`;
+    $('contributeAmountInput').value = '';
+    $('contributeDeductBalanceCheckbox').checked = true;
+    $('contributeGoalModal').classList.add('open');
+    setTimeout(() => $('contributeAmountInput').focus(), 50);
+  }
+
+  function closeContributeModal() {
+    $('contributeGoalModal')?.classList.remove('open');
+  }
+
+  $('closeContributeGoalModal')?.addEventListener('click', closeContributeModal);
+  $('cancelContributeGoalModal')?.addEventListener('click', closeContributeModal);
+  $('contributeGoalModal')?.addEventListener('click', (e) => {
+    if (e.target === $('contributeGoalModal')) closeContributeModal();
+  });
+
+  $('contributeGoalForm')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const goalId = $('contributeGoalId').value;
+    const amount = Number($('contributeAmountInput').value) || 0;
+    const deduct = $('contributeDeductBalanceCheckbox').checked;
+    if (amount <= 0) return;
+
+    const goal = state.goals.find(g => g.id === goalId);
+    if (!goal) return;
+
+    const prevSaved = goal.saved;
+    const prevBalance = state.bankBalance;
+    const entryId = 'contrib-' + Date.now().toString(36);
+
+    goal.saved += amount;
+    if (deduct) {
+      state.bankBalance = Math.max(0, state.bankBalance - amount);
+      state.history.push({
+        id: entryId,
+        type: 'goal',
+        goalId: goal.id,
+        name: `Contributed to ${goal.name}`,
+        amount,
+        date: new Date().toISOString().split('T')[0]
+      });
+    }
+
+    saveState();
+    closeContributeModal();
+    render();
+    renderGoals();
+
+    const balMsg = deduct ? ` (Deducted ${fmt(amount)} from bank balance)` : '';
+    showToast(`Added ${fmt(amount)} to "${goal.name}"!${balMsg}`, () => {
+      goal.saved = prevSaved;
+      if (deduct) {
+        state.bankBalance = prevBalance;
+        state.history = state.history.filter(x => x.id !== entryId);
+      }
+      saveState();
+      render();
+      renderGoals();
+      showToast('Reversed goal contribution.');
     });
   });
 

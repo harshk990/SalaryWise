@@ -89,18 +89,38 @@ function refreshHtmlCache() {
   }
 }
 
-// Pre-warm HTML cache at startup
-refreshHtmlCache();
+function syncToAndroidAssetsAndApk() {
+  try {
+    if (fs.existsSync(ROOT_INDEX)) {
+      const html = fs.readFileSync(ROOT_INDEX);
+      fs.mkdirSync(path.dirname(ASSETS_INDEX), { recursive: true });
+      fs.writeFileSync(ASSETS_INDEX, html);
+      console.log('📱 Synced changes to Android assets/index.html');
+      
+      // Auto re-package APK so local APK is always matching localhost
+      exec('python build_android_apk.py', { cwd: ROOT_DIR }, (err) => {
+        if (!err) console.log('📦 Updated Android APK (SalaryWise-v2.0.apk)');
+      });
+    }
+  } catch (err) {
+    console.error('Failed to auto-sync Android assets:', err.message);
+  }
+}
 
-// Watch both index.html files for changes
+// Pre-warm HTML cache & sync Android assets at startup
+refreshHtmlCache();
+syncToAndroidAssetsAndApk();
+
+// Watch index.html for changes - auto-updates both localhost and Android app
 let reloadDebounce = null;
 function notifyChange() {
   clearTimeout(reloadDebounce);
   reloadDebounce = setTimeout(() => {
     refreshHtmlCache();
+    syncToAndroidAssetsAndApk();
     console.log('🔄 File changed, triggering live-reload...');
     broadcastReload();
-  }, 30);
+  }, 40);
 }
 
 [ROOT_INDEX].forEach((filePath) => {
