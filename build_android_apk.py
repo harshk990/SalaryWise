@@ -411,9 +411,18 @@ def main():
     offline_html_bytes = prepare_offline_index_html()
     
     # 2. Extract base binaries
-    print("[*] Extracting base APK binaries (dex, manifest, resources)...")
     import zipfile
-    with zipfile.ZipFile('SalaryWise-v1.0.apk', 'r') as z:
+    candidates = [
+        'SalaryWise-v1.0.apk',
+        'SalaryWise-v2.0.apk',
+        os.path.join('SalaryWise-Official-Android-Studio-Project-1', 'SalaryWise-OfficialBuild', 'app', 'build', 'outputs', 'apk', 'debug', 'SalaryWise-v2.0.apk'),
+        os.path.join('SalaryWise-Official-Android-Studio-Project-1', 'SalaryWise-OfficialBuild', 'app', 'build', 'outputs', 'apk', 'debug', 'app-debug.apk')
+    ]
+    base_apk = next((p for p in candidates if os.path.exists(p)), None)
+    if not base_apk:
+        raise FileNotFoundError("Base APK not found to extract binaries.")
+    print(f"[*] Extracting base APK binaries (dex, manifest, resources) from {base_apk}...")
+    with zipfile.ZipFile(base_apk, 'r') as z:
         manifest_bytes = z.read('AndroidManifest.xml')
         classes_dex = z.read('classes.dex')
         classes2_dex = z.read('classes2.dex')
